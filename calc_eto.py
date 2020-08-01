@@ -8,10 +8,10 @@ tukino_eto=[["丙","丁","戊","己","庚","辛","壬","癸","甲","乙","丙","
 ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸","甲","乙"]]
 
 
-def method1():
-    print("西暦で入力")
-    year=input("生年月日を数字8桁で入力してください/(YYYYMMDD)")
-    x=int(year)
+def method1(A1):
+    #print("西暦で入力")
+    #year=input("生年月日を数字8桁で入力してください/(YYYYMMDD)")
+    x=int(A1)
     #yearを求める
     y=x//10000
     L4=x-y*10000
@@ -38,23 +38,25 @@ def method1():
     N=z%10
     M=z%12
     #NとMの算出、結果の出力
-    print(y + "年" + m + "月" + d + "日の干支はこれです。")
+    print(str(y) + "年" + str(m) + "月" + str(d) + "日の干支はこれです。")
     print(jikkann[N],jyunisi[M])
     
       
-def method2():
-  print("西暦を入力")
-  year=input("1234年56月78日数字8桁")
-  All=int(year)
+def method2(A2):
+  #print("西暦を入力")
+  #year=input("1234年56月78日数字8桁")
+  All=int(A2)
   YEAR=All//10000  #上４桁を取り出し年とする
   #年の干支を求める
   nen_kan=jikkann[int((YEAR+6)%10)]
   nen_eto=jyunisi[int((YEAR+8)%12)]
 
-  print(nen_kan,nen_eto)
   LOW=All-(YEAR*10000)  #下４桁を取り出し月日に加工
   MONTH=LOW//100  #上から５６桁目を取りだし月とする
   DAY = LOW - (MONTH*100)  #上から７８桁目を取り出し日とする
+
+  print(str(YEAR) + "年の干支はこれです。")
+  print(nen_kan,nen_eto)
 
   #月の干支の計算
   #リストtukino_etoの行を定める全５行
@@ -62,6 +64,7 @@ def method2():
   month_kan = tukino_eto[tuki_tate][MONTH-1]
   #子が１１月になるように調整
   month_si = (MONTH + 1) % 12
+  print(str(YEAR) + "年" + str(MONTH) + "月の干支はこれです。")
   print(month_kan,jyunisi[month_si])
 
 
@@ -72,13 +75,11 @@ def method2():
 
 
 if __name__ == "__main__":
-  q=input("日の干支の計算は１を入力、全部計算する場合は０を入力")
-  if int(q) != 1 and int(q) != 0:
-    print("not found")
-  elif int(q)==1:
-    method1()
-  elif int(q) == 0:
-    method2()
+  print("年の干支、月の干支、日の干支を計算します。西暦で年月日を入力してください。")
+  q=input("YYYYMMDDとなるように数字8桁を入力。")
+  
+  method1(q)
+  method2(q)
 
 
  
